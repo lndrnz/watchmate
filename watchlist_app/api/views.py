@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from watchlist_app.models import Movie
-from watchlist_app.api.serializers import MovieSerializer
+from .serializers import MovieSerializer
 
 @api_view(['GET','POST'])
 def movie_list(request):
@@ -18,7 +18,7 @@ def movie_list(request):
         else:
             return Response(serializer.errors)
 
-@api_view('GET','PUT','DELETE')
+@api_view(['GET','PUT','DELETE'])
 def movie_details(request, pk):
     if request.method == "GET":
         movie = Movie.objects.get(pk=pk)
@@ -33,6 +33,3 @@ def movie_details(request, pk):
         else:
             return Response(serializer.errors)
             
-        
-    if request.method == "DELETE":
-        serializer
