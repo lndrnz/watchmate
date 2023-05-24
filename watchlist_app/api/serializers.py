@@ -10,7 +10,15 @@ class WatchListSerializer(serializers.ModelSerializer):
         # exclude = ['active']
         
 class StreamingPlatformSerializer(serializers.ModelSerializer):
-    watchlist = WatchListSerializer(many=True, read_only=True)
+    # watchlist = WatchListSerializer(many=True, read_only=True)
+    # watchlist = serializers.StringRelatedField(many=True) #specifies the string name to be shown
+    # watchlist = serializers.PrimaryKeyRelatedField(many=True, read_only=True) #specifies primarykey only
+    watchlist = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name="watch_detail"
+        )#specifies URL only
+    
     class Meta:
         model = StreamingPlatform
         fields = "__all__"
