@@ -5,7 +5,6 @@ from rest_framework import status
 from watchlist_app.models import Movie
 from .serializers import MovieSerializer
 
-#
 class MovieListAV(APIView):
     
     def get(self, request):
