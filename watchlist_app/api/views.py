@@ -65,7 +65,7 @@ class StreamingPlatformAV(APIView):
             return Response(serializer.errors)
 
 
-class StreamDetailAP(APIView):
+class StreamDetailAV(APIView):
     
     def get(self, request, pk):
         try:
@@ -73,7 +73,7 @@ class StreamDetailAP(APIView):
         except StreamingPlatform.DoesNotExist:
             return Response({"Error": "Streaming Platform not found"}, status=status.HTTP_404_NOT_FOUND)
     
-        serializer = StreamingPlatform(stream)
+        serializer = StreamingPlatformSerializer(stream)
         return Response(serializer.data)
     
     
